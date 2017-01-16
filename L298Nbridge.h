@@ -1,17 +1,19 @@
-/*
- Library for using a L298 dual H bridge Motor driver.
- Created by James A Hope January 2017.
- Released into the public domain.
+﻿/*
+  Library for using a L298 dual H bridge Motor driver.
+  Created by James A Hope January 2017.
+  Released into the public domain.
  
- Connect:
- EN1 to D9
- INA0 to D2
- INA1 to D3
+  Connect:
+  ENA to D9
+  IN1 to D3
+  IN2 to D2
  
- EN2 to D10
- INB0 to D4
- INB1 to D5
-
+  ENB to D10
+  IN3 to D4
+  IN4 to D5
+  
+  This wiring obviously depends on how you have your motors wired and you should test first with tiral and error!
+  
 */
  
 #ifndef L298Nbridge_h
