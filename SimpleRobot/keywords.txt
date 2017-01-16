@@ -1,0 +1,25 @@
+#######################################
+# Syntax Coloring Map for SimpleRobot
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+robotBegin	KEYWORD2
+robotSetSpeed	KEYWORD2
+robotForward	KEYWORD2
+robotReverse	KEYWORD2
+robotStop	KEYWORD2
+robotBreak	KEYWORD2
+robotTurnLeft KEYWORD2
+robotTurnRight KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MOTOR_LEFT	LITERAL1
+MOTOR_RIGHT	LITERAL1
+MIN_SPEED	LITERAL1
+speed LITERAL1
