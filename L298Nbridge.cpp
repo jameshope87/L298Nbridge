@@ -19,26 +19,37 @@ static MotorController MC;
 */
 
 DCMotor::DCMotor(uint8_t num) {
-  motornum = num;
+  motorNum = num;
   
+  inPin1 = inPin1s[motorNum - 1];
+  inPin2 = inPin2s[motorNum - 1];
+  enPin = enPins[motorNum - 1];
+/*  
   switch(num) {
     case 1:
-      pinMode(MOTOR1_EN, OUTPUT);
-      pinMode(MOTOR1_A, OUTPUT);
-      pinMode(MOTOR1_B, OUTPUT);
+      pinMode(inPin1[0], OUTPUT);
+      pinMode(inPin2[0], OUTPUT);
+      pinMode(enPin[0], OUTPUT);
       break;
     case 2:
-      pinMode(MOTOR2_EN, OUTPUT);
-      pinMode(MOTOR2_A, OUTPUT);
-      pinMode(MOTOR2_B, OUTPUT);  
+      pinMode(inPin1[1], OUTPUT);
+      pinMode(inPin2[1], OUTPUT);
+      pinMode(enPin[1], OUTPUT);  
       break;
   }
+*/
+}
+
+void DCMotor::begin() {
+  pinMode(inPin1, OUTPUT);
+  pinMode(inPin2, OUTPUT);
+  pinMode(enPin, OUTPUT);
 }
 
 void DCMotor::run(uint8_t cmd) {
   uint8_t a, b;
   
-  switch (motornum) {
+  switch (motorNum) {
     case 1:
       a = MOTOR1_A; b = MOTOR1_B; break;
     case 2:
@@ -68,7 +79,7 @@ void DCMotor::run(uint8_t cmd) {
 }
 
 void DCMotor::setSpeed(uint8_t speed) {
-  switch (motornum) {
+  switch (motorNum) {
     case 1:
       analogWrite(MOTOR1_EN, speed);
       break;
