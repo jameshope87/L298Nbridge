@@ -10,16 +10,7 @@
  
 #include "Arduino.h"
 
-/*
-//Arduino pin names for motors
-#define MOTOR1_A 2
-#define MOTOR1_B 3
-#define MOTOR2_A 4
-#define MOTOR2_B 5
 
-#define MOTOR1_EN 9
-#define MOTOR2_EN 10
-*/
 //constants for motor run calls
 #define FORWARD 1
 #define BACKWARD 2
