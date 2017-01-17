@@ -21,16 +21,16 @@
 class DCMotor
 {
   public:
-    DCMotor(uint8_t motorNum, uint8_t inPin1, uint8_t inPin2, uint8_t enPin);
+    DCMotor(uint8_t num, uint8_t inPin1, uint8_t inPin2, uint8_t enPin);
     void begin();
     void run(uint8_t);
     void setSpeed(uint8_t);
   
   private:
-    uint8_t motorNum;
-    uint8_t inPin1s[2];
-    uint8_t inPin2s[2];
-    uint8_t enPins[2];
+    uint8_t _motorNum;
+    uint8_t _inPin1s[2];
+    uint8_t _inPin2s[2];
+    uint8_t _enPins[2];
 };
  
 #endif
