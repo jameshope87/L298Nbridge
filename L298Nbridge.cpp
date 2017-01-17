@@ -19,7 +19,7 @@ DCMotor::DCMotor(uint8_t num, uint8_t inPin1, uint8_t inPin2, uint8_t enPin) {
 void DCMotor::begin() {
   pinMode(_inPin1s[_motorNum - 1], OUTPUT);
   pinMode(_inPin2s[_motorNum - 1], OUTPUT);
-  pinMode(enPin, OUTPUT);
+  pinMode(_enPins[_motorNum - 1], OUTPUT);
 }
 
 void DCMotor::run(uint8_t cmd) {
