@@ -7,19 +7,17 @@ James' L298 Motor controller library
 #include "L298Nbridge.h"
 
 
-DCMotor::DCMotor(uint8_t num, uint8_t inPin1, uint8_t inPin2, uint8_t enPin) {
-  _motorNum = num;
-  
-  _inPin1s[_motorNum - 1] = inPin1;
-  _inPin2s[_motorNum - 1] = inPin2;
-  _enPins[_motorNum - 1] = enPin;
-
+DCMotor::DCMotor(uint8_t num, uint8_t Pin1, uint8_t Pin2, uint8_t enPin) {
+    _motorNum = num;
+    _Pin1 = Pin1;
+    _Pin2 = Pin2;
+    _enPin = enPin;
 }
 
 void DCMotor::begin() {
-  pinMode(_inPin1s[_motorNum - 1], OUTPUT);
-  pinMode(_inPin2s[_motorNum - 1], OUTPUT);
-  pinMode(_enPins[_motorNum - 1], OUTPUT);
+  pinMode(_Pin1, OUTPUT);
+  pinMode(_Pin2, OUTPUT);
+  pinMode(_enPin, OUTPUT);
 }
 
 void DCMotor::run(uint8_t cmd) {
@@ -27,23 +25,23 @@ void DCMotor::run(uint8_t cmd) {
   
   switch(cmd) {
     case FORWARD:
-      digitalWrite(_inPin1s[_motorNum - 1], HIGH);
-      digitalWrite(_inPin2s[_motorNum - 1], LOW);
+      digitalWrite(_Pin1, HIGH);
+      digitalWrite(_Pin2, LOW);
       break;
     case BACKWARD:
-      digitalWrite(_inPin1s[_motorNum - 1], LOW);
-      digitalWrite(_inPin2s[_motorNum - 1], HIGH);
+      digitalWrite(_Pin1, LOW);
+      digitalWrite(_Pin2, HIGH);
       break;
     case BRAKE:
-      digitalWrite(_inPin1s[_motorNum - 1], LOW);
-      digitalWrite(_inPin2s[_motorNum - 1], LOW);
+      digitalWrite(_Pin1, LOW);
+      digitalWrite(_Pin2, LOW);
       break;
     case RELEASE:
-      digitalWrite(_enPins[_motorNum - 1], LOW);
+      digitalWrite(_enPin, LOW);
       break;
   }
 }
 
 void DCMotor::setSpeed(uint8_t speed) {
-  analogWrite(_enPins[_motorNum - 1], speed);
+  analogWrite(_enPin, speed);
 }
