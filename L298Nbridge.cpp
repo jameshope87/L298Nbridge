@@ -5,75 +5,43 @@ James' L298 Motor controller library
 
 #include "Arduino.h"
 #include "L298Nbridge.h"
-/*
-MotorController::MotorController(void) {
+
+
+DCMotor::DCMotor(uint8_t num, uint8_t Pin1, uint8_t Pin2, uint8_t enPin) {
+    _motorNum = num;
+    _Pin1 = Pin1;
+    _Pin2 = Pin2;
+    _enPin = enPin;
 }
 
-void MotorController::enable(void) {
-  pinMode(MOTORENABLE, OUTPUT);
-}
-
-
-static MotorController MC;
-
-*/
-
-DCMotor::DCMotor(uint8_t num) {
-  motornum = num;
-  
-  switch(num) {
-    case 1:
-      pinMode(MOTOR1_EN, OUTPUT);
-      pinMode(MOTOR1_A, OUTPUT);
-      pinMode(MOTOR1_B, OUTPUT);
-      break;
-    case 2:
-      pinMode(MOTOR2_EN, OUTPUT);
-      pinMode(MOTOR2_A, OUTPUT);
-      pinMode(MOTOR2_B, OUTPUT);  
-      break;
-  }
+void DCMotor::begin() {
+  pinMode(_Pin1, OUTPUT);
+  pinMode(_Pin2, OUTPUT);
+  pinMode(_enPin, OUTPUT);
 }
 
 void DCMotor::run(uint8_t cmd) {
   uint8_t a, b;
   
-  switch (motornum) {
-    case 1:
-      a = MOTOR1_A; b = MOTOR1_B; break;
-    case 2:
-      a = MOTOR2_A; b = MOTOR2_B; break;
-    default:
-      return;
-  }
-  
   switch(cmd) {
     case FORWARD:
-      digitalWrite(a, HIGH);
-      digitalWrite(b, LOW);
+      digitalWrite(_Pin1, HIGH);
+      digitalWrite(_Pin2, LOW);
       break;
     case BACKWARD:
-      digitalWrite(a, LOW);
-      digitalWrite(b, HIGH);
+      digitalWrite(_Pin1, LOW);
+      digitalWrite(_Pin2, HIGH);
       break;
     case BRAKE:
-      digitalWrite(a, LOW);
-      digitalWrite(b, LOW);
+      digitalWrite(_Pin1, LOW);
+      digitalWrite(_Pin2, LOW);
       break;
     case RELEASE:
-      digitalWrite(a, LOW);
-      digitalWrite(b, LOW);
+      digitalWrite(_enPin, LOW);
       break;
   }
 }
 
 void DCMotor::setSpeed(uint8_t speed) {
-  switch (motornum) {
-    case 1:
-      analogWrite(MOTOR1_EN, speed);
-      break;
-    case 2:
-      analogWrite(MOTOR2_EN, speed);
-      break;
-  }
+  analogWrite(_enPin, speed);
 }
